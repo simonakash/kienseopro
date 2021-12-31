@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-----Tailwind css Js---->
+  <script src="js/tailwindcss.js"></script>
+  <!-----Tailwind css Js---->
+  <script defer src="js/alpine.min.js"></script>
+  <!-----custom css---->
+  <style>
+    /*----font-----*/
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    .font-montserrat{
+       font-family: 'Montserrat', sans-serif !important;
+    }
+    /*----font-----*/
+</style>
+</head>
+<body x-data="{sticky: true}">
+    <!--====================Header====================-->
+    <header
+		@scroll.window="sticky= (window.pageYOffset > 50) ? false :true"
+		:class="{'sticky' : !sticky}"
+		class="right-0 top-0 left-0 z-50">
+		<div x-data="{humberger: false}">
+            <!--mobile menu-->
+            <nav class="fixed top-0 bottom-0 right-0 w-96 bg-white z-20" x-show="humberger"
+                @click.away="humberger = false"
+                x-transition:enter="transition ease-out top-0 duration-300 -mr-96"
+                x-transition:enter-start=""
+                x-transition:enter-end=" transform -translate-x-96"
+                x-transition:leave="transition ease-out duration-300"
+                x-transition:leave-start=""
+                x-transition:leave-end="transform translate-x-96"
+                >
+                <div class=" mt-4 divide-y px-8 overflow-y-auto h-screen pt-8 tracking-wider">
+                    <!---->
+                    <ul class=" space-y-3 py-8">
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">LOGIN</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">SIGN UP</a>
+                        </li>
+                    </ul>
+                    <!---->
+                    <ul class=" space-y-3 py-8">
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">PRICING</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BLOG</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">DIRECTORY</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">FABRICS</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">HOW IT WORKS</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BROWSE SERVICE PROVIDERS</a>
+                        </li>
+                    </ul>
+                    <!---->
+                    <ul class=" space-y-3 py-8">
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">ABOUT US</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">HOW TO USE SEWPORT</a>
+                        </li>
+                        <!---->
+                        <li>
+                            <a class="text-slate-900 py-2 font-serif text-base block font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">SUPPORT</a>
+                        </li>
+                    </ul>
+                </div>									
+            </nav>
+            <!--main menu-->
+			<nav :class="{'xl:py-2.5 md:py-2 py-1' : !sticky, 'xl:py-4 md:py-3 py-2' : sticky}" class="flex duration-500 justify-between items-center text-center bg-white md:px-10 sm:px-5 px-3 z-50 relative shadow-md">
+				<!--logo-->
+				<div>
+                    <a href="#">
+                        <img height="100%" width="100%" class="w-full h-full" src="images/logo/logo.svg" alt="//">
+                    </a>
+				</div>
+                <!--center-->
+				<div class="space-x-7 text-xs uppercase">
+					<ul class="space-x-7 xl:flex items-center hidden tracking-wider">
+                        <!---->
+						<li>
+							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="index.html">PRICING</a>
+						</li>
+				        <!----->
+						<li x-data="{dropdown:false}" class="relative">
+                            <!----->
+							<button @mouseover="dropdown=true" @mouseout= "dropdown = false" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
+                                <span>LEARN</span>
+                                <span class="pb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-2 text-green-400 ml-1 " viewBox="0 0 320 512"><path fill="currentColor" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"/></svg>
+                                </span>
+                                <!----->
+                                <div x-show="dropdown"
+                                x-transition:enter="duration-300 ease-in-out"
+                                x-transition:enter-start="opacity-0 transform translate-y-12"
+                                x-transition:enter-end="opacity-100 transform translate-y-0"
+                                x-transition:leave="duration-300 ease-in-out"
+                                x-transition:leave-start="opacity-100 transform translate-y-0"
+                                x-transition:leave-end="opacity-0 transform translate-y-12"
+                                class="absolute bg-white border rounded shadow divide-y z-50 mt-3 top-5">
+                                    <!---->
+                                    <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BLOG</a>
+                                    <!---->
+                                    <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">DIRECTORY</a>
+                                    <!---->
+                                    <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">FABRICS</a>
+                                    <!----->
+                                    <div class="absolute -top-2 left-3 bg-white h-4 w-4 transform rotate-45 border-b-0 border-r-0 border"></div>
+                                </div>
+							</button>
+						</li>
+                        <!---->
+						<li>
+							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BROWSE SERVICE PROVIDERS</a>
+						</li>
+                        <!---->
+						<li>
+							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">ABOUT US</a>
+						</li>
+                         <!----->
+						<li x-data="{dropdown:false}" class="relative">
+                            <!----->
+							<button @mouseover="dropdown=true" @mouseout = "dropdown = false" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
+                                <span>HOW IT WORKS</span>
+                                <span class="pb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-2 text-green-400 ml-1 " viewBox="0 0 320 512"><path fill="currentColor" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"/></svg>
+                                </span>
+                                <!----->
+                                <div  x-show="dropdown"
+                                x-transition:enter="duration-300 ease-in-out"
+                                x-transition:enter-start="opacity-0 transform translate-y-12"
+                                x-transition:enter-end="opacity-100 transform translate-y-0"
+                                x-transition:leave="duration-300 ease-in-out"
+                                x-transition:leave-start="opacity-100 transform translate-y-0"
+                                x-transition:leave-end="opacity-0 transform translate-y-12"
+                                class="absolute bg-white border rounded shadow divide-y z-50 mt-3 top-5">
+                                    <!---->
+                                    <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">FOR BRANDS</a>
+                                    <!---->
+                                    <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat whitespace-nowrap" href="#">FOR MANUFACTURERS</a>
+                                    <!----->
+                                    <div class="absolute -top-2 left-3 bg-white h-4 w-4 transform rotate-45 border-b-0 border-r-0 border"></div>
+                                </div>
+							</button>
+						</li>
+					</ul>
+				</div>
+                <!--right-->
+                <div class=" flex items-center space-x-5">
+                   <button class="relative inline-flex items-center py-1.5 px-2 rounded-full transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus:outline-none bg-cyan-500 text-cyan-200 focus-visible:ring-cyan-600" id="headlessui-switch-5" role="switch" type="button" tabindex="0" aria-checked="false">
+                        <svg width="24" height="24" fill="none" aria-hidden="true" class="transform transition-transform scale-0 duration-500">
+                            <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M12 4v1M18 6l-1 1M20 12h-1M18 18l-1-1M12 19v1M7 17l-1 1M5 12H4M7 7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <svg width="24" height="24" fill="none" aria-hidden="true" class="ml-3.5 transform transition-transform scale-100 duration-300">
+                            <path d="M18 15.63c-.977.52-1.945.481-3.13.481A6.981 6.981 0 0 1 7.89 9.13c0-1.185-.04-2.153.481-3.13C6.166 7.174 5 9.347 5 12.018A6.981 6.981 0 0 0 11.982 19c2.67 0 4.844-1.166 6.018-3.37ZM16 5c0 2.08-.96 4-3 4 2.04 0 3 .92 3 3 0-2.08.96-3 3-3-2.04 0-3-1.92-3-4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="absolute top-0.5 left-0.5 bg-white w-8 h-8 rounded-full flex items-center justify-center transition duration-500 transform">
+                            <svg width="24" height="24" fill="none" aria-hidden="true" class="flex-none transition duration-500 transform text-cyan-500 opacity-100 scale-100">
+                                <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M12 4v1M18 6l-1 1M20 12h-1M18 18l-1-1M12 19v1M7 17l-1 1M5 12H4M7 7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <svg width="24" height="24" fill="none" aria-hidden="true" class="flex-none -ml-6 transition duration-500 transform text-gray-700 opacity-0 scale-0">
+                                <path d="M18 15.63c-.977.52-1.945.481-3.13.481A6.981 6.981 0 0 1 7.89 9.13c0-1.185-.04-2.153.481-3.13C6.166 7.174 5 9.347 5 12.018A6.981 6.981 0 0 0 11.982 19c2.67 0 4.844-1.166 6.018-3.37ZM16 5c0 2.08-.96 4-3 4 2.04 0 3 .92 3 3 0-2.08.96-3 3-3-2.04 0-3-1.92-3-4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <!--hubmberger button-->
+                    <div class=" flex xl:hidden">
+                        <button class=" text-green-400 hover:text-green-400 duration-150"  @click="humberger=true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+			</nav>
+		</div>
+	</header>
+    <!--====================main====================-->
+    <main>
+        <!-- section 001 -->
+        <section class="font-montserrat md:px-20 sm:px-16 px-8 xl:py-16 py-12 bg-cover bg-no-repeat bg-center" style=" background-image:url('images/bg/bg1.jpg')">
+            <!--=====breadcumb=====-->
+            <div class="sm:space-y-0 space-y-2 flex sm:flex-row flex-col sm:items-center md:mb-3 text-sm font-medium text-green-400 sm:pb-10 pb-8">
+                <!---->
+                <div class=" flex items-center">
+                    <a href="#">Sewport</a>
+                    <span class="px-3">/</span>
+                </div>
+                <!---->
+                <div class=" flex items-center">
+                    <a href="#">Top clothing manufacturers</a>
+                    <span class="px-3">/</span>
+                </div>
+                <!---->
+                <a class=" text-white" href="#">UK</a>
+            </div>
+             <!--=====grid=====-->
+             <div class=" grid md:grid-cols-3 grid-cols-1 md:gap-10 items-center">
+                 <!-----001----->
+                 <div class=" md:col-span-2 text-white">
+                    <!------>
+                    <h1 class=" font-bold xl:text-4xl sm:text-3xl text-2xl capitalize mb-5 tracking-wide">UK Clothing Manufacturers</h1>
+                    <!---->
+                    <p class="font-semibold sm:text-base text-sm sm:mb-10 mb-8 text-blue-100">Sewport connects you with verified clothing manufacturers in UK, making it simpler for clothing brands and fashion designers to reach professional and local fashion production factories when starting a new clothing brand.</p>
+                 </div>
+                 <!-----002----->
+                 <div class=" md:col-span-1 text-white">
+                    <!------>
+                    <a class="duration-300 xl:text-lg text-sm font-semibold w-full block xl:py-5 py-3 rounded-md bg-green-400 hover:opacity-70 text-center border-0 mb-5" href="#">Browse now</a>
+                    <!------>
+                    <a class="duration-300 xl:text-lg text-sm font-semibold w-full block xl:py-5 py-3 rounded-md text-center border-2 border-white hover:opacity-70 mb-10" href="#">Talk to an expert</a>
+                 </div>
+             </div>
+        </section>
+        <!-- section 002 -->
+        <section class="font-montserrat md:px-20 sm:px-16 px-8 xl:py-16 py-12">
+            <!-----Heading text----->
+            <div class=" text-center">
+                <!---->
+                <h1 class=" text-2xl text-slate-700 font-bold mb-2.5 tracking-wide">Read more about manufacturers in UK</h1>
+                 <!---->
+                <p class=" text-base text-gray-500 font-medium">Read articles from the Sewport blog about manufacturers in UK.</p>
+            </div>
+             <!-----grid----->
+            <div class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 py-10">
+                <!--001-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/01.jpeg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">How to start a Clothing Line? «The Super Guide» + Costs & 43 Expert Tips</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--002-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/02.jpg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">Fashion Apprenticeships - How They Can Boost Growth In Your Business</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--003-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/03.jpg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">Fashion Tech Pack - Avoid Manufacturing Errors (Ultimate Guide Book)</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--004-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/04.jpg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">Which Countries Have the Best Clothing Manufacturers(Industry Research)</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--005-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/05.jpg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">7 Best Ways You Can Promote Your New Clothing Brand Online</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--006-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/06.png" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">How Clothes Are Made In 9 Steps (A Look Into A Big Clothing Factory)</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--007-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/07.jpeg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">How To Do a Successful Fashion Photoshoot (Best Tips 2019)</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+                <!--008-->
+                <div class=" flex flex-col justify-between">
+                    <!---->
+                    <div>
+                        <div class=" overflow-hidden rounded-xl md:h-48">
+                            <img height="100%" width="100%" class="w-full h-full duration-700 transform hover:scale-125 object-cover" src="images/article/08.jpg" alt="//">
+                        </div>
+                        <!---->
+                        <p class=" text-gray-500 text-lg font-medium mt-4">Top Fashion Trade Shows to Attend & How To Prepare for an Exhibit</p>
+                    </div>
+                    <!---->
+                    <div>
+                         <!---->
+                         <a class="mt-7 inline-block py-3 px-11 text-sm text-blue-500 hover:opacity-70 duration-300 font-semibold rounded-md border-2 border-blue-500" href="#">Read article</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--====================footer====================-->
+    <footer class=" bg-sky-900">
+        <!-- 001 -->
+        <section class="md:px-10 sm:px-5 px-3 py-10 font-montserrat">
+            <!---->
+            <div class="grid sm:grid-cols-2 grid-cols-1 gap-8">
+                <!---->
+                <div class=" grid md:grid-cols-3 grid-col-1 gap-8">
+                    <!---->
+                    <div class=" md:col-span-1 flex justify-center">
+                        <a href="#">
+                            <img height="100%" width="100%" class="w-6 h-auto block" src="images/logo/logo1.svg" alt="//">
+                        </a>
+                    </div>
+                    <!---->
+                    <div class=" md:col-span-2 grid sm:grid-cols-2 grid-cols-1 md:text-left text-center font-bold  gap-8">
+                        <!---->
+                        <div>
+                            <!---->
+                            <h1 class=" text-gray-400 mb-5 text-sm">MENU</h1>
+                            <!---->
+                            <ul class=" space-y-3">
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="index.html">Home</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">Manufacturers</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">Support</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">Learn</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!---->
+                        <div>
+                            <!---->
+                            <h1 class=" text-gray-400 mb-5 text-sm">COMPANY</h1>
+                            <!---->
+                            <ul class=" space-y-3">
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">About us</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">Contact</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">FAQ</a>
+                                </li>
+                                <!---->
+                                <li>
+                                    <a class="text-xs text-sky-200 hover:underline hover:opacity-90 block duration-150" href="#">Press</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+                <div class=" flex flex-col md:justify-between md:items-end items-center">
+                    <!---->
+                    <div class=" inline-flex space-x-2 sm:mb-16 mb-4">
+                        <!---->
+                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5">
+                                <path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M204 6.5C101.4 6.5 0 74.9 0 185.6 0 256 39.6 296 63.6 296c9.9 0 15.6-27.6 15.6-35.4 0-9.3-23.7-29.1-23.7-67.8 0-80.4 61.2-137.4 140.4-137.4 68.1 0 118.5 38.7 118.5 109.8 0 53.1-21.3 152.7-90.3 152.7-24.9 0-46.2-18-46.2-43.8 0-37.8 26.4-74.4 26.4-113.4 0-66.2-93.9-54.2-93.9 25.8 0 16.8 2.1 35.4 9.6 50.7-13.8 59.4-42 147.9-42 209.1 0 18.9 2.7 37.5 4.5 56.4 3.4 3.8 1.7 3.4 6.9 1.5 50.4-69 48.6-82.5 71.4-172.8 12.3 23.4 44.1 36 69.3 36 106.2 0 153.9-103.5 153.9-196.8C384 71.3 298.2 6.5 204 6.5z"/>
+                            </svg>
+                        </a>
+                        <!---->
+                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5">
+                                <path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
+                            </svg>
+                        </a>
+                        <!---->
+                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                        </a>
+                        <!---->
+                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
+                        </a>
+                    </div>
+                    <!---->
+                    <div>
+                        <!---->
+                        <p class=" text-sm text-sky-300 font-medium md:text-right text-center">Available on</p>
+                        <!---->
+                        <div class=" flex md:flex-row flex-col gap-4 md:items-center pt-4">
+                            <!---->
+                            <a href="#">
+                                <img height="100%" width="100%" class="w-32 h-10 block" src="images/footer/app-store-badge.svg" alt="//">
+                            </a>
+                            <!---->
+                            <a href="#">
+                                <img height="100%" width="100%" class="w-32 h-10 block" src="images/footer/google-play-badge.svg" alt="//">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---->
+        <div class=" py-6 md:px-10 sm:px-5 px-3 flex items-center">
+            <span class=" text-sm font-bold font-montserrat tracking-widest text-gray-500 mr-2">BLOG</span>
+            <div class="w-full block border-b border-gray-500"></div>
+        </div>
+        <!-- 002 -->
+        <section class="md:px-10 sm:px-5 pt-6 px-3 font-montserrat">
+            <!--sect header text-->
+            <div>
+                <h1 class=" text-sm font-bold font-montserrat tracking-wide text-gray-400">TOP POSTS</h1>
+            </div>
+            <!--grid-->
+            <div class="grid md:grid-cols-5 sm:grid-cols-2 grid-cols-1 md:gap-8 gap-x-8 py-6">
+                <!---->
+                <ul class=" space-y-2">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">A Simple Guide to Working With Clothing Manufacturers (Bonus Tips)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Cost of Starting a Clothing Line (2019 Industry Research)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Sizing guide tool for high-street shops</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-3">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Fashion Designer - Is a Fashion Degree Worth It? (2019 Cost Analysis)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Which Countries Have the Best Clothing Manufacturers(Industry Research)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Garment Labelling Requirements for Clothing (Full Guide)</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-3">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">7 Best Ways You Can Promote Your New Clothing Brand Online</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">How Clothes Are Made In 9 Steps (A Look Into A Big Clothing Factory)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">How To Do a Successful Fashion Photoshoot (Best Tips 2019)</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-3">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Best Tips on Starting A Clothing Line (From 40+ Expert Fashion Designers)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Top Fashion Trade Shows to Attend & How To Prepare for an Exhibit</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">How to Become a Fashion Designer in 2019 (new complete guide)</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-3">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Fashion Apprenticeships - How They Can Boost Growth In Your Business</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">Fashion Tech Pack - Avoid Manufacturing Errors (Ultimate Guide Book)</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#">More posts here</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!---->
+        <div class=" py-6 md:px-10 sm:px-5 px-3 flex items-center">
+            <span class=" text-sm font-bold font-montserrat tracking-widest text-gray-500 mr-2">DIRECTORY</span>
+            <div class="w-full block border-b border-gray-500"></div>
+        </div>
+        <!-- 003 -->
+        <section class="md:px-10 sm:px-5 pt-6 px-3 font-montserrat">
+            <!--sect header text-->
+            <div>
+                <h1 class=" text-sm font-bold font-montserrat tracking-wide text-gray-400">BY COUNTRY AND CITY</h1>
+            </div>
+            <!--grid-->
+            <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 py-6">
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> UK</span> Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> London</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">USA</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Los Angeles</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">New York</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Canada</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Toronto</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Australia</span>Top Clothing Manufacturers</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> Canberra</span> Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> Sydney</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">China</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Shanghai</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Asia</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Europe</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Pakistan</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Bangladesh</span>Top Clothing Manufacturers</a>
+                    </li>
+                    
+                </ul>
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> Bulgaria</span> Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white"> India</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Italy</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Poland</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Portugal</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Turkey</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Spain</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Vietnam</span>Top Clothing Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Romania</span>Top Clothing Manufacturers</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- 004 -->
+        <section class="md:px-10 sm:px-5 pt-6 px-3 font-montserrat">
+            <!--sect header text-->
+            <div>
+                <h1 class=" text-sm font-bold font-montserrat tracking-wide text-gray-400">BY GARMENT TYPE</h1>
+            </div>
+            <!--grid-->
+            <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 py-6">
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Children’s Clothing</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Dress</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Jeans</span> Manufacturers</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Maternity Activewear</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Shirt</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Sports Clothing</span> Manufacturers</a>
+                    </li>
+                </ul>
+                <!---->
+                <ul class=" space-y-1">
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Swimwear</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">T-Shirt</span> Manufacturers</a>
+                    </li>
+                    <!---->
+                    <li>
+                        <a class="text-xs font-semibold text-sky-200 hover:underline hover:opacity-90 duration-150" href="#"><span class=" font-bold text-white">Underwear</span> Manufacturers</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- 005 -->
+        <section class="md:px-10 sm:px-5 py-8 px-3 font-montserrat">
+            <div class=" flex lg:flex-row flex-col lg:gap-5 gap-2 lg:justify-between items-center">
+                <!---->
+                <div class=" space-x-4 sm:text-left text-center">
+                    <!---->
+                    <a class="inline-flex text-xs text-gray-400 hover:underline duration-200 hover:opacity-90" href="#">Terms & Conditions</a>
+                    <!---->
+                    <a class="inline-flex text-xs text-gray-400 hover:underline duration-200 hover:opacity-90" href="#">Privacy Policy</a>
+                    <!---->
+                    <a class="inline-flex text-xs text-gray-400 hover:underline duration-200 hover:opacity-90" href="#">Agreement for manufacturers</a>
+                    <!---->
+                    <a class="inline-flex text-xs text-gray-400 hover:underline duration-200 hover:opacity-90" href="#">Sitemap</a>
+                </div>
+                <!---->
+                <div>
+                    <p class="text-xs text-gray-400 sm:whitespace-nowrap">© 2020 Beila Ltd. All rights registered</p>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

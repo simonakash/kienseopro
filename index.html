@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--------->
+  <title>UK Clothing Manufacturers</title>
   <!-----Tailwind css Js---->
   <script src="js/tailwindcss.js"></script>
   <!-----Tailwind css Js---->
   <script defer src="js/alpine.min.js"></script>
-  <!-----custom css---->
-  <style>
-    /*----font-----*/
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    <!-----custom css---->
+    <link rel="stylesheet" href="css/style.css">
 
-    .font-montserrat{
-       font-family: 'Montserrat', sans-serif !important;
-    }
-    /*----font-----*/
 </style>
 </head>
 <body x-data="{sticky: true}">
@@ -96,7 +92,7 @@
 				<!--logo-->
 				<div>
                     <a href="#">
-                        <img height="100%" width="100%" class="w-full h-full" src="images/logo/logo.svg" alt="//">
+                        <img height="100%" width="100%" :class="{'h-9' : !sticky, ' h-12' : sticky}" class="w-auto duration-500" src="images/logo/logo.svg" alt="//">
                     </a>
 				</div>
                 <!--center-->
@@ -122,7 +118,7 @@
                                 x-transition:leave="duration-300 ease-in-out"
                                 x-transition:leave-start="opacity-100 transform translate-y-0"
                                 x-transition:leave-end="opacity-0 transform translate-y-12"
-                                class="absolute bg-white border rounded shadow divide-y z-50 mt-3 top-5">
+                                class="absolute bg-white border rounded shadow  z-50 mt-3 top-5">
                                     <!---->
                                     <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BLOG</a>
                                     <!---->
@@ -171,13 +167,13 @@
 					</ul>
 				</div>
                 <!--right-->
-                <div class=" flex items-center space-x-5">
-                   <button class="relative inline-flex items-center py-1.5 px-2 rounded-full transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus:outline-none bg-cyan-500 text-cyan-200 focus-visible:ring-cyan-600" id="headlessui-switch-5" role="switch" type="button" tabindex="0" aria-checked="false">
-                        <svg width="24" height="24" fill="none" aria-hidden="true" class="transform transition-transform scale-0 duration-500">
+                <div class="scale-90  flex items-center space-x-5 duration-500">
+                   <button aria-checked="true" aria-label="right" class="relative duration-500 inline-flex items-center py-1.5 px-2 rounded-full transition-colors  focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus:outline-none bg-cyan-500 text-cyan-200 focus-visible:ring-cyan-600" id="headlessui-switch-5" role="switch" type="button" tabindex="0" aria-checked="false">
+                        <svg role="icon" width="24" height="24" fill="none" aria-hidden="true" class="transform transition-transform scale-0 duration-500">
                             <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M12 4v1M18 6l-1 1M20 12h-1M18 18l-1-1M12 19v1M7 17l-1 1M5 12H4M7 7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                        <svg width="24" height="24" fill="none" aria-hidden="true" class="ml-3.5 transform transition-transform scale-100 duration-300">
+                        <svg role="icon1" width="24" height="24" fill="none" aria-hidden="true" class="ml-3.5 transform transition-transform scale-100 duration-300">
                             <path d="M18 15.63c-.977.52-1.945.481-3.13.481A6.981 6.981 0 0 1 7.89 9.13c0-1.185-.04-2.153.481-3.13C6.166 7.174 5 9.347 5 12.018A6.981 6.981 0 0 0 11.982 19c2.67 0 4.844-1.166 6.018-3.37ZM16 5c0 2.08-.96 4-3 4 2.04 0 3 .92 3 3 0-2.08.96-3 3-3-2.04 0-3-1.92-3-4Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                         <span class="absolute top-0.5 left-0.5 bg-white w-8 h-8 rounded-full flex items-center justify-center transition duration-500 transform">
@@ -192,7 +188,7 @@
                     </button>
                     <!--hubmberger button-->
                     <div class=" flex xl:hidden">
-                        <button class=" text-green-400 hover:text-green-400 duration-150"  @click="humberger=true">
+                        <button aria-checked="false" role="button" aria-label="hubmberger" class=" text-green-400 hover:text-green-400 duration-150" @click="humberger=true">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
@@ -210,13 +206,25 @@
             <div class="sm:space-y-0 space-y-2 flex sm:flex-row flex-col sm:items-center md:mb-3 text-sm font-medium text-green-400 sm:pb-10 pb-8">
                 <!---->
                 <div class=" flex items-center">
-                    <a href="#">Sewport</a>
-                    <span class="px-3">/</span>
+                    <a aria-label="home" href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                        </svg>
+                    </a>
+                    <span class="px-1"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
                 </div>
                 <!---->
                 <div class=" flex items-center">
                     <a href="#">Top clothing manufacturers</a>
-                    <span class="px-3">/</span>
+                    <span class="px-1"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
                 </div>
                 <!---->
                 <a class=" text-white" href="#">UK</a>
@@ -452,23 +460,23 @@
                     <!---->
                     <div class=" inline-flex space-x-2 sm:mb-16 mb-4">
                         <!---->
-                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                        <a aria-label="pinterest" class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5">
                                 <path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M204 6.5C101.4 6.5 0 74.9 0 185.6 0 256 39.6 296 63.6 296c9.9 0 15.6-27.6 15.6-35.4 0-9.3-23.7-29.1-23.7-67.8 0-80.4 61.2-137.4 140.4-137.4 68.1 0 118.5 38.7 118.5 109.8 0 53.1-21.3 152.7-90.3 152.7-24.9 0-46.2-18-46.2-43.8 0-37.8 26.4-74.4 26.4-113.4 0-66.2-93.9-54.2-93.9 25.8 0 16.8 2.1 35.4 9.6 50.7-13.8 59.4-42 147.9-42 209.1 0 18.9 2.7 37.5 4.5 56.4 3.4 3.8 1.7 3.4 6.9 1.5 50.4-69 48.6-82.5 71.4-172.8 12.3 23.4 44.1 36 69.3 36 106.2 0 153.9-103.5 153.9-196.8C384 71.3 298.2 6.5 204 6.5z"/>
                             </svg>
                         </a>
                         <!---->
-                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                        <a aria-label="facebook" class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-5 h-5">
                                 <path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
                             </svg>
                         </a>
                         <!---->
-                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                        <a aria-label="Twitter" class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
                         </a>
                         <!---->
-                        <a class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
+                        <a aria-label="google" class=" rounded-full h-11 w-11 bg-cyan-800 flex items-center justify-center text-sky-300" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
                         </a>
                     </div>

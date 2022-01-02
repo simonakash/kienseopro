@@ -17,7 +17,7 @@
 <body x-data="{sticky: true}">
     <!--====================Header====================-->
     <header
-		@scroll.window="sticky= (window.pageYOffset > 50) ? false :true"
+		@scroll.window="sticky= (window.pageYOffset > 0) ? false :true"
 		:class="{'sticky' : !sticky}"
 		class="right-0 top-0 left-0 z-50">
 		<div x-data="{humberger: false}">
@@ -96,16 +96,16 @@
                     </a>
 				</div>
                 <!--center-->
-				<div class="space-x-7 text-xs uppercase">
-					<ul class="space-x-7 xl:flex items-center hidden tracking-wider">
+				<div class="text-xs uppercase">
+					<ul class="space-x-2 xl:flex items-center hidden tracking-wider">
                         <!---->
-						<li>
+						<li class="px-2.5">
 							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="index.html">PRICING</a>
 						</li>
 				        <!----->
-						<li x-data="{dropdown:false}" class="relative">
+						<li x-data="{dropdown:false}" @click.away="dropdown=false" @mouseout.away= "dropdown = false" class="relative px-2.5">
                             <!----->
-							<button @mouseover="dropdown=true" @mouseout= "dropdown = false" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
+							<button @mouseover="dropdown=true" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
                                 <span>LEARN</span>
                                 <span class="pb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2 text-green-400 ml-1 " viewBox="0 0 320 512"><path fill="currentColor" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"/></svg>
@@ -118,7 +118,7 @@
                                 x-transition:leave="duration-300 ease-in-out"
                                 x-transition:leave-start="opacity-100 transform translate-y-0"
                                 x-transition:leave-end="opacity-0 transform translate-y-12"
-                                class="absolute bg-white border rounded shadow  z-50 mt-3 top-5">
+                                class="absolute bg-white border rounded shadow z-50 mt-3 top-5">
                                     <!---->
                                     <a class="p-4 px-6 block border-b text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BLOG</a>
                                     <!---->
@@ -131,17 +131,17 @@
 							</button>
 						</li>
                         <!---->
-						<li>
+						<li class="px-2.5">
 							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">BROWSE SERVICE PROVIDERS</a>
 						</li>
                         <!---->
-						<li>
+						<li class="px-2.5">
 							<a class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat" href="#">ABOUT US</a>
 						</li>
                          <!----->
-						<li x-data="{dropdown:false}" class="relative">
+						<li x-data="{dropdown:false}" @click.away="dropdown=false" @mouseout.away= "dropdown = false" class="relative px-2.5">
                             <!----->
-							<button @mouseover="dropdown=true" @mouseout = "dropdown = false" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
+							<button @mouseover="dropdown=true" class="text-slate-900 font-serif text-xs font-bold hover:text-blue-600 duration-200 font-montserrat flex items-center text-left">
                                 <span>HOW IT WORKS</span>
                                 <span class="pb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2 text-green-400 ml-1 " viewBox="0 0 320 512"><path fill="currentColor" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"/></svg>
@@ -203,32 +203,43 @@
         <!-- section 001 -->
         <section class="font-montserrat md:px-20 sm:px-16 px-8 xl:py-16 py-12 bg-cover bg-no-repeat bg-center" style=" background-image:url('images/bg/bg1.jpg')">
             <!--=====breadcumb=====-->
-            <div class="sm:space-y-0 space-y-2 flex sm:flex-row flex-col sm:items-center md:mb-3 text-sm font-medium text-green-400 sm:pb-10 pb-8">
-                <!---->
-                <div class=" flex items-center">
-                    <a aria-label="home" href="index.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                        </svg>
-                    </a>
-                    <span class="px-1"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </span>
-                </div>
-                <!---->
-                <div class=" flex items-center">
-                    <a href="#">Top clothing manufacturers</a>
-                    <span class="px-1"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </span>
-                </div>
-                <!---->
-                <a class=" text-white" href="#">UK</a>
-            </div>
+            <section id="breadcrumb" class="flex flex-col items-start justify-between space-x-2 space-y-4 lg:items-center lg:space-y-0 lg:flex-row whitespace-nowrap mb-4 font-montserrat">
+                <nav class="rounded max-w-7xl">
+                    <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="flex md:gap-0 md:flex-row flex-col gap-2 md:items-center md:space-x-2 text-sm text-green-400">
+                        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <a itemtype="http://schema.org/Thing" itemprop="item" href="/" class="hover:opacity-90 hover:underline duration-500 flex">
+                            <span itemprop="name" class="inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg class="inline-block w-5 h-5 leading-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </span>
+                            </a>
+                            <meta itemprop="name" content="UrDirectory.net">
+                            <meta itemprop="position" content="1">
+                        </li>
+                        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <span itemtype="http://schema.org/Thing" itemprop="item" content="https://urdirectory.netlify.com/clothing-manufacturers/"><span itemprop="name" class="inline-block">
+                            Top clothing manufacturers</span></span>
+                            <meta itemprop="position" content="2">
+                            <span>
+                                <svg class="inline-block w-5 h-5 leading-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </span>
+                        </li>
+                        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <span itemtype="http://schema.org/Thing" itemprop="item" content="https://urdirectory.netlify.com/clothing-manufacturers/"><span itemprop="name" class="inline-block text-white font-semibold">
+                            UK</span></span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                    </ol>
+                </nav>
+            </section>
              <!--=====grid=====-->
              <div class=" grid md:grid-cols-3 grid-cols-1 md:gap-10 items-center">
                  <!-----001----->
@@ -789,6 +800,25 @@
                 </div>
             </div>
         </section>
+        <!---- bottom to top button------>
+        <div class=" cursor-pointer duration-700" @scroll.window="sticky= (window.pageYOffset > 200) ? false :true"
+            :class="{'hidden' : sticky}"
+            onclick="topFunction()">
+            <button class="fixed z-10 md:p-3 p-2 bg-gray-100 rounded-full shadow-md md:bottom-10 bottom-6 right-4 md:right-10 animate-bounce duration-500">
+                <svg class="md:w-8 md:h-8 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18">
+                    </path>
+                </svg>
+            </button>
+        </div>
     </footer>
+    <!---- bottom to top script------>
+    <script>
+        function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+    </script>
 </body>
 </html>
